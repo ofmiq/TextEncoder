@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>VocabEncryptor</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">
+/* Light dark theme with gray tones */
+QWidget {
+    background-color: #2f2f2f;
+    color: #e0e0e0;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+QTextEdit, QLineEdit {
+    background-color: #3a3a3a;
+    color: #e0e0e0;
+    border: 1px solid #666666;
+    border-radius: 8px;
+    padding: 4px;
+}
+QPushButton {
+    background-color: #4a4a4a;
+    color: #e0e0e0;
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+QPushButton:hover {
+    background-color: #5a5a5a;
+}
+QComboBox {
+    background-color: #3a3a3a;
+    color: #e0e0e0;
+    border: none;
+    border-radius: 8px;
+    padding: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+QFrame {
+    border: 2px solid #666666;
+    border-radius: 8px;
+}
+QStatusBar {
+    background-color: #2f2f2f;
+    color: #e0e0e0;
+    border-top: 1px solid #666666;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+   </string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QHBoxLayout" name="algorithmLayout">
+      <item>
+       <widget class="QLabel" name="algorithmLabel">
+        <property name="styleSheet">
+         <string notr="true">border: none;</string>
+        </property>
+        <property name="text">
+         <string>Algorithm:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="cipherComboBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: none;</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>Caesar</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>AES</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Vigenere</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="keyLayout">
+      <item>
+       <widget class="QLabel" name="keyLabel">
+        <property name="styleSheet">
+         <string notr="true">border: none;</string>
+        </property>
+        <property name="text">
+         <string>Key:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="keyLineEdit">
+        <property name="placeholderText">
+         <string>Enter key (if required)</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="textLayout">
+      <item>
+       <widget class="QTextEdit" name="inputTextEdit">
+        <property name="placeholderText">
+         <string>Enter text to encrypt/decrypt...</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTextEdit" name="outputTextEdit">
+        <property name="mouseTracking">
+         <bool>true</bool>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="placeholderText">
+         <string>Result...</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QFrame" name="dragDropFrame">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>150</height>
+       </size>
+      </property>
+      <property name="toolTip">
+       <string>Drag and drop a file here or click to select</string>
+      </property>
+      <layout class="QVBoxLayout" name="dragDropLayout">
+       <item>
+        <widget class="QPushButton" name="selectFileButton">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>150</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Click or drag a file here</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="buttonLayout">
+      <item>
+       <widget class="QPushButton" name="encryptButton">
+        <property name="text">
+         <string>Encrypt</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="decryptButton">
+        <property name="text">
+         <string>Decrypt</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="generateKeyButton">
+        <property name="text">
+         <string>Generate Key</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
