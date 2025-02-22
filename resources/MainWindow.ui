@@ -95,12 +95,12 @@ QStatusBar {
         </item>
         <item>
          <property name="text">
-          <string>AES</string>
+          <string>Vigenere</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Vigenere</string>
+          <string>XOR</string>
          </property>
         </item>
        </widget>

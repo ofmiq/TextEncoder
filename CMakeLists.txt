@@ -32,6 +32,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         src/CipherFactory.cpp
         include/EncryptionService.h
         src/EncryptionService.cpp
+        include/VigenereCipher.h
+        src/VigenereCipher.cpp
+        include/XORCipher.h
+        src/XORCipher.cpp
     )
 else()
     add_executable(TextEncoder

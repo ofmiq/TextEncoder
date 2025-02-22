@@ -11,14 +11,16 @@
 class CipherFactory {
 public:
     enum AlgorithmType {
-        Caesar
+        Caesar,
+        Vigenere,
+        XOR
     };
 
     /**
-     * @brief Creates an encryption algorithm based on the specified type.
-     * @param type The type of algorithm to create.
-     * @return A unique_ptr to an IEncryptionAlgorithm object representing the created cipher.
-     */
+     * @brief Creates an encryption algorithm based on the specified type.
+     * @param type The type of algorithm to create.
+     * @return A unique_ptr to an IEncryptionAlgorithm object representing the created cipher.
+     */
     static std::unique_ptr<IEncryptionAlgorithm> createCipher(AlgorithmType type);
 };
 

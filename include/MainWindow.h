@@ -17,31 +17,31 @@ class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
     /**
-     * @brief Constructor for MainWindow.
-     * @param parent The parent widget.
-     */
+     * @brief Constructor for MainWindow.
+     * @param parent The parent widget.
+     */
     explicit MainWindow(QWidget *parent = nullptr);
 
     /**
-     * @brief Destructor for MainWindow.
-     */
+     * @brief Destructor for MainWindow.
+     */
     ~MainWindow();
 
 private slots:
     /**
-     * @brief Slot triggered when the encrypt button is clicked.
-     */
+     * @brief Slot triggered when the encrypt button is clicked.
+     */
     void on_encryptButton_clicked();
 
     /**
-     * @brief Slot triggered when the decrypt button is clicked.
-     */
+     * @brief Slot triggered when the decrypt button is clicked.
+     */
     void on_decryptButton_clicked();
 
 private:
     /**
-     * @brief Updates the encryption service based on the selected cipher type and key from UI.
-     */
+     * @brief Updates the encryption service based on the selected cipher type and key from UI.
+     */
     void updateEncryptionService();
 
     Ui::MainWindow *ui;

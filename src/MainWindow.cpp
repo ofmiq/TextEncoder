@@ -20,6 +20,10 @@ void MainWindow::updateEncryptionService() {
 
     if (type == "Caesar") {
         cipher = CipherFactory::createCipher(CipherFactory::Caesar);
+    } else if (type == "Vigenere") {
+        cipher = CipherFactory::createCipher(CipherFactory::Vigenere);
+    } else if (type == "XOR") {
+        cipher = CipherFactory::createCipher(CipherFactory::XOR);
     }
 
     encryptionService = std::make_unique<EncryptionService>(std::move(cipher));
