@@ -38,6 +38,11 @@ private slots:
      */
     void on_decryptButton_clicked();
 
+    /**
+     * @brief Slot triggered when the generate key button is clicked.
+     */
+    void on_generateKeyButton_clicked();
+
 private:
     /**
      * @brief Updates the encryption service based on the selected cipher type and key from UI.
@@ -46,6 +51,26 @@ private:
 
     Ui::MainWindow *ui;
     std::unique_ptr<EncryptionService> encryptionService;
+
+    /**
+     * @brief Generates a random string of a given length.
+     * @param length The length of the string to generate.
+     * @param generator A function that generates a single random character.
+     * @return The generated random string.
+     */
+    QString generateRandomString(int length, std::function<QChar()> generator);
+
+    /**
+     * @brief Generates a random uppercase or lowercase letter.
+     * @return A random uppercase or lowercase letter.
+     */
+    QChar generateRandomUpperOrLower();
+
+    /**
+     * @brief Generates a random printable ASCII character.
+     * @return A random printable ASCII character.
+     */
+    QChar generateRandomPrintableAscii();
 };
 
 #endif // MAINWINDOW_H

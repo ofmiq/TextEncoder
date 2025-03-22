@@ -2,6 +2,7 @@
 #include "ui_MainWindow.h"
 #include "CipherFactory.h"
 #include <QMessageBox>
+#include <QRandomGenerator>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -47,10 +48,49 @@ void MainWindow::on_decryptButton_clicked() {
     QString cipherText = ui->inputTextEdit->toPlainText();
     QString key = ui->keyLineEdit->text();
 
-    if (ui->cipherComboBox->currentText() == "Caesar" && key.trimmed().isEmpty()) {
-        key = "3";
-    }
-
     QString plainText = encryptionService->decrypt(cipherText, key);
     ui->outputTextEdit->setPlainText(plainText);
+}
+
+void MainWindow::on_generateKeyButton_clicked() {
+    QString cipherType = ui->cipherComboBox->currentText();
+    QString generatedKey;
+
+    if (cipherType == "Caesar") {
+        int shift = QRandomGenerator::global()->bounded(1, 26);
+        generatedKey = QString::number(shift);
+    } else if (cipherType == "Vigenere") {
+        generatedKey = generateRandomString(6, [this](){ return generateRandomUpperOrLower(); });
+    } else if (cipherType == "XOR") {
+        generatedKey = generateRandomString(8, [this](){ return generateRandomPrintableAscii(); });
+    } else if (cipherType == "Atbash") {
+        generatedKey = ""; // Atbash does not require a key
+    } else if (cipherType == "Playfair") {
+        generatedKey = generateRandomString(6, [this](){ return generateRandomUpperOrLower(); });
+    } else {
+        generatedKey = "";
+    }
+
+    ui->keyLineEdit->setText(generatedKey);
+}
+
+QString MainWindow::generateRandomString(int length, std::function<QChar()> generator) {
+    QString result = "";
+    for (int i = 0; i < length; ++i) {
+        result.append(generator());
+    }
+    return result;
+}
+
+QChar MainWindow::generateRandomUpperOrLower() {
+    int r = QRandomGenerator::global()->bounded(0, 52);
+    if (r < 26) {
+        return QChar(QChar('A').unicode() + r);
+    } else {
+        return QChar(QChar('a').unicode() + (r - 26));
+    }
+}
+
+QChar MainWindow::generateRandomPrintableAscii() {
+    return QChar(QRandomGenerator::global()->bounded(33, 127));
 }
