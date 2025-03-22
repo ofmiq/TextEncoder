@@ -13,7 +13,8 @@ public:
     enum AlgorithmType {
         Caesar,
         Vigenere,
-        XOR
+        XOR,
+        Atbash
     };
 
     /**

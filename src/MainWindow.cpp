@@ -24,6 +24,8 @@ void MainWindow::updateEncryptionService() {
         cipher = CipherFactory::createCipher(CipherFactory::Vigenere);
     } else if (type == "XOR") {
         cipher = CipherFactory::createCipher(CipherFactory::XOR);
+    } else if (type == "Atbash") {
+        cipher = CipherFactory::createCipher(CipherFactory::Atbash);
     }
 
     encryptionService = std::make_unique<EncryptionService>(std::move(cipher));

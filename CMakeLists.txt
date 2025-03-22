@@ -36,6 +36,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         src/VigenereCipher.cpp
         include/XORCipher.h
         src/XORCipher.cpp
+        include/AtbashCipher.h
+        src/AtbashCipher.cpp
     )
 else()
     add_executable(TextEncoder
