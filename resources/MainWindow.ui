@@ -108,6 +108,11 @@ QStatusBar {
           <string>XOR</string>
          </property>
         </item>
+        <item>
+         <property name="text">
+          <string>Playfair</string>
+         </property>
+        </item>
        </widget>
       </item>
      </layout>

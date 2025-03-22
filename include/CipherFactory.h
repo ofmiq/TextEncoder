@@ -14,7 +14,8 @@ public:
         Caesar,
         Vigenere,
         XOR,
-        Atbash
+        Atbash,
+        Playfair
     };
 
     /**

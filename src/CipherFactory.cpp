@@ -3,6 +3,7 @@
 #include "VigenereCipher.h"
 #include "XORCipher.h"
 #include "AtbashCipher.h"
+#include "PlayfairCipher.h"
 
 std::unique_ptr<IEncryptionAlgorithm> CipherFactory::createCipher(AlgorithmType type) {
     switch(type) {
@@ -14,6 +15,8 @@ std::unique_ptr<IEncryptionAlgorithm> CipherFactory::createCipher(AlgorithmType 
         return std::make_unique<XORCipher>();
     case Atbash:
         return std::make_unique<AtbashCipher>();
+    case Playfair:
+        return std::make_unique<PlayfairCipher>();
     default:
         return nullptr;
     }

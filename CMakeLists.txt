@@ -38,6 +38,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         src/XORCipher.cpp
         include/AtbashCipher.h
         src/AtbashCipher.cpp
+        include/PlayfairCipher.h
+        src/PlayfairCipher.cpp
     )
 else()
     add_executable(TextEncoder

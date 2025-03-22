@@ -26,6 +26,8 @@ void MainWindow::updateEncryptionService() {
         cipher = CipherFactory::createCipher(CipherFactory::XOR);
     } else if (type == "Atbash") {
         cipher = CipherFactory::createCipher(CipherFactory::Atbash);
+    } else if (type == "Playfair") {
+        cipher = CipherFactory::createCipher(CipherFactory::Playfair);
     }
 
     encryptionService = std::make_unique<EncryptionService>(std::move(cipher));
