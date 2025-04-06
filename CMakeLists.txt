@@ -19,32 +19,33 @@ set(PROJECT_SOURCES
     src/MainWindow.cpp
     include/MainWindow.h
     resources/MainWindow.ui
+    include/IEncryptionAlgorithm.h
+    include/CaesarCipher.h
+    src/CaesarCipher.cpp
+    include/CipherFactory.h
+    src/CipherFactory.cpp
+    include/EncryptionService.h
+    src/EncryptionService.cpp
+    include/VigenereCipher.h
+    src/VigenereCipher.cpp
+    include/XORCipher.h
+    src/XORCipher.cpp
+    include/AtbashCipher.h
+    src/AtbashCipher.cpp
+    include/PlayfairCipher.h
+    src/PlayfairCipher.cpp
+    include/FileProcessor.h
+    src/FileProcessor.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(TextEncoder
+        WIN32
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        include/IEncryptionAlgorithm.h
-        include/CaesarCipher.h
-        src/CaesarCipher.cpp
-        include/CipherFactory.h
-        src/CipherFactory.cpp
-        include/EncryptionService.h
-        src/EncryptionService.cpp
-        include/VigenereCipher.h
-        src/VigenereCipher.cpp
-        include/XORCipher.h
-        src/XORCipher.cpp
-        include/AtbashCipher.h
-        src/AtbashCipher.cpp
-        include/PlayfairCipher.h
-        src/PlayfairCipher.cpp
-        include/FileProcessor.h
-        src/FileProcessor.cpp
     )
 else()
-    add_executable(VocabBuilder
+    add_executable(TextEncoder
         WIN32
         ${PROJECT_SOURCES}
     )
