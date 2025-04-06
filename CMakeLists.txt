@@ -40,6 +40,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         src/AtbashCipher.cpp
         include/PlayfairCipher.h
         src/PlayfairCipher.cpp
+        include/FileProcessor.h
+        src/FileProcessor.cpp
     )
 else()
     add_executable(TextEncoder

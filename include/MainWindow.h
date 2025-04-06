@@ -27,6 +27,19 @@ public:
      */
     ~MainWindow();
 
+protected:
+    /**
+     * @brief Handles drag enter events to accept potential file drops.
+     * @param event The drag enter event details.
+     */
+    void dragEnterEvent(QDragEnterEvent *event) override;
+
+    /**
+     * @brief Handles drop events to process dropped files.
+     * @param event The drop event details.
+     */
+    void dropEvent(QDropEvent *event) override;
+
 private slots:
     /**
      * @brief Slot triggered when the encrypt button is clicked.
@@ -42,6 +55,16 @@ private slots:
      * @brief Slot triggered when the generate key button is clicked.
      */
     void on_generateKeyButton_clicked();
+
+    /**
+     * @brief Slot triggered when the select file button is clicked.
+     */
+    void on_selectFileButton_clicked();
+
+    /**
+     * @brief Slot triggered when the save russult button is clicked.
+     */
+    void on_saveResultButton_clicked();
 
 private:
     /**
@@ -71,6 +94,12 @@ private:
      * @return A random printable ASCII character.
      */
     QChar generateRandomPrintableAscii();
+
+    /**
+     * @brief Loads content from the specified file path into the input text area.
+     * @param filePath The absolute path to the file to load.
+     */
+    void loadFile(const QString& filePath);
 };
 
 #endif // MAINWINDOW_H
