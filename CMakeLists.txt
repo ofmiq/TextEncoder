@@ -44,7 +44,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         src/FileProcessor.cpp
     )
 else()
-    add_executable(TextEncoder
+    add_executable(VocabBuilder
+        WIN32
         ${PROJECT_SOURCES}
     )
 endif()
