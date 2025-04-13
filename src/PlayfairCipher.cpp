@@ -94,12 +94,17 @@ QString PlayfairCipher::processText(const QString &text, bool forEncryption) {
     return result;
 }
 
-QVector<QPair<QChar, QChar>> PlayfairCipher::createDigraphs(const QString &text) {
+QVector<QPair<QChar, QChar>> PlayfairCipher::createDigraphs(const QString &text, bool forEncryption) {
     QVector<QPair<QChar, QChar>> digraphs;
     for (int i = 0; i < text.length(); i += 2) {
-        QChar first = text.at(i);
-        QChar second = (i + 1 < text.length()) ? text.at(i+1) : 'X';
-        digraphs.append(qMakePair(first, second));
+        if (i + 1 < text.length()) {
+            QChar first = text.at(i);
+            QChar second = text.at(i + 1);
+            digraphs.append(qMakePair(first, second));
+        } else if (forEncryption && i < text.length()) {
+            digraphs.append(qMakePair(text.at(i), QChar('X')));
+        }
+        // No padding for decryption if odd length.
     }
     return digraphs;
 }
@@ -107,7 +112,7 @@ QVector<QPair<QChar, QChar>> PlayfairCipher::createDigraphs(const QString &text)
 QString PlayfairCipher::encrypt(const QString &plainText, const QString &key) {
     prepareTable(key);
     QString processed = processText(plainText, true);
-    QVector<QPair<QChar, QChar>> digraphs = createDigraphs(processed);
+    QVector<QPair<QChar, QChar>> digraphs = createDigraphs(processed, true);
     QString result;
 
     for (auto pair : digraphs) {
@@ -135,7 +140,7 @@ QString PlayfairCipher::encrypt(const QString &plainText, const QString &key) {
 QString PlayfairCipher::decrypt(const QString &cipherText, const QString &key) {
     prepareTable(key);
     QString processed = processText(cipherText, false);
-    QVector<QPair<QChar, QChar>> digraphs = createDigraphs(processed);
+    QVector<QPair<QChar, QChar>> digraphs = createDigraphs(processed, false);
     QString result;
 
     for (auto pair : digraphs) {

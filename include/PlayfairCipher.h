@@ -60,7 +60,7 @@ private:
      * @param text The processed text.
      * @return A vector of digraphs.
      */
-    QVector<QPair<QChar, QChar>> createDigraphs(const QString &text);
+    QVector<QPair<QChar, QChar>>createDigraphs(const QString &text, bool forEncryption = true);
 };
 
 #endif // PLAYFAIRCIPHER_H
