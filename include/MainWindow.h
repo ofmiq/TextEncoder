@@ -62,7 +62,7 @@ private slots:
     void on_selectFileButton_clicked();
 
     /**
-     * @brief Slot triggered when the save russult button is clicked.
+     * @brief Slot triggered when the save result button is clicked.
      */
     void on_saveResultButton_clicked();
 

@@ -14,6 +14,12 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     setAcceptDrops(true);
+
+    ui->cipherComboBox->addItem("Caesar", QVariant(static_cast<int>(CipherFactory::Caesar)));
+    ui->cipherComboBox->addItem("Vigenere", QVariant(static_cast<int>(CipherFactory::Vigenere)));
+    ui->cipherComboBox->addItem("XOR", QVariant(static_cast<int>(CipherFactory::XOR)));
+    ui->cipherComboBox->addItem("Atbash", QVariant(static_cast<int>(CipherFactory::Atbash)));
+    ui->cipherComboBox->addItem("Playfair", QVariant(static_cast<int>(CipherFactory::Playfair)));
 }
 
 MainWindow::~MainWindow() {
@@ -77,22 +83,35 @@ void MainWindow::on_decryptButton_clicked() {
 }
 
 void MainWindow::on_generateKeyButton_clicked() {
-    QString cipherType = ui->cipherComboBox->currentText();
+    int cipherTypeInt = ui->cipherComboBox->currentData().toInt();
+    CipherFactory::AlgorithmType cipherType = static_cast<CipherFactory::AlgorithmType>(cipherTypeInt);
     QString generatedKey;
 
-    if (cipherType == "Caesar") {
+    switch (cipherType) {
+    case CipherFactory::Caesar: {
         int shift = QRandomGenerator::global()->bounded(1, 26);
         generatedKey = QString::number(shift);
-    } else if (cipherType == "Vigenere") {
+        break;
+    }
+    case CipherFactory::Vigenere: {
         generatedKey = generateRandomString(6, [this](){ return generateRandomUpperOrLower(); });
-    } else if (cipherType == "XOR") {
+        break;
+    }
+    case CipherFactory::XOR: {
         generatedKey = generateRandomString(8, [this](){ return generateRandomPrintableAscii(); });
-    } else if (cipherType == "Atbash") {
+        break;
+    }
+    case CipherFactory::Atbash: {
         generatedKey = ""; // Atbash does not require a key
-    } else if (cipherType == "Playfair") {
+        break;
+    }
+    case CipherFactory::Playfair: {
         generatedKey = generateRandomString(6, [this](){ return generateRandomUpperOrLower(); });
-    } else {
+        break;
+    }
+    default:
         generatedKey = "";
+        break;
     }
 
     ui->keyLineEdit->setText(generatedKey);
@@ -155,20 +174,11 @@ void MainWindow::loadFile(const QString& filePath) {
 }
 
 void MainWindow::updateEncryptionService() {
-    QString type = ui->cipherComboBox->currentText();
+    int cipherTypeInt = ui->cipherComboBox->currentData().toInt();
+    CipherFactory::AlgorithmType cipherType = static_cast<CipherFactory::AlgorithmType>(cipherTypeInt);
     std::unique_ptr<IEncryptionAlgorithm> cipher;
 
-    if (type == "Caesar") {
-        cipher = CipherFactory::createCipher(CipherFactory::Caesar);
-    } else if (type == "Vigenere") {
-        cipher = CipherFactory::createCipher(CipherFactory::Vigenere);
-    } else if (type == "XOR") {
-        cipher = CipherFactory::createCipher(CipherFactory::XOR);
-    } else if (type == "Atbash") {
-        cipher = CipherFactory::createCipher(CipherFactory::Atbash);
-    } else if (type == "Playfair") {
-        cipher = CipherFactory::createCipher(CipherFactory::Playfair);
-    }
+    cipher = CipherFactory::createCipher(cipherType);
 
     encryptionService = std::make_unique<EncryptionService>(std::move(cipher));
 }

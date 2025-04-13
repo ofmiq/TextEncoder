@@ -88,31 +88,6 @@ QStatusBar {
         <property name="styleSheet">
          <string notr="true">border: none;</string>
         </property>
-        <item>
-         <property name="text">
-          <string>Caesar</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Atbash</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Vigenere</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>XOR</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Playfair</string>
-         </property>
-        </item>
        </widget>
       </item>
      </layout>
