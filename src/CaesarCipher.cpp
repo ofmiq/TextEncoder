@@ -14,7 +14,7 @@ QString CaesarCipher::encrypt(const QString &plainText, const QString &key) {
     for (QChar ch : plainText) {
         if (ch.isLetter()) {
             QChar base = ch.isUpper() ? 'A' : 'a';
-            int offset = (ch.unicode() - base.unicode() + shift) % 26;
+            int offset = (ch.unicode() - base.unicode() + shift % 26 + 26) % 26;
             result.append(QChar(base.unicode() + offset));
         } else {
             result.append(ch);
