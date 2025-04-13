@@ -10,6 +10,7 @@ QString FileProcessor::loadFromFile(const QString& filePath) {
     }
 
     QTextStream in(&file);
+    in.setEncoding(QStringConverter::Utf8);
     return in.readAll();
 }
 
@@ -20,6 +21,7 @@ bool FileProcessor::saveToFile(const QString& filePath, const QString& content) 
     }
 
     QTextStream out(&file);
+    out.setEncoding(QStringConverter::Utf8);
     out << content;
     return true;
 }
