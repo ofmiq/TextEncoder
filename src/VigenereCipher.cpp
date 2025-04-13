@@ -24,11 +24,11 @@ QString VigenereCipher::encrypt(const QString &plainText, const QString &key) {
             }
             if (ch.isUpper()) {
                 int base = 'A';
-                int offset = (ch.unicode() - base + shift) % 26;
+                int offset = (ch.unicode() - base + shift + 26) % 26;
                 result.append(QChar(base + offset));
             } else {
                 int base = 'a';
-                int offset = (ch.unicode() - base + shift) % 26;
+                int offset = (ch.unicode() - base + shift + 26) % 26;
                 result.append(QChar(base + offset));
             }
             keyIndex++;
